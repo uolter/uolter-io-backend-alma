@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  alma:
+    permissions:
+      id-token: 'write'
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      # We'll need to check out the repository so that we can edit the README.
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Let's get all the branches.
+      - name: Dependencies Extraction
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_ID_TOKEN_REQUEST_TOKEN: ${{vars.ACTIONS_ID_TOKEN_REQUEST_TOKEN}}
+          ACTIONS_ID_TOKEN_REQUEST_URL: ${{vars.ACTIONS_ID_TOKEN_REQUEST_URL}}
+        run: |
+          chmod +x dep-extractor &&
+          ./dep-extractor
