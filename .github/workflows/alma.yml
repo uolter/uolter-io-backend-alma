@@ -27,5 +27,5 @@ jobs:
           echo $OUT &&
           AUTH=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange") &&
           echo "Next" && 
-          curl -X POST -H "Content-Type: application/json" -H "authentication: $AUTH" --data "$OUT" "https://xf3mor2ks5.execute-api.eu-south-1.amazonaws.com/v1/action"
+          curl -X POST -H "Content-Type: application/json" -H "authorization: $AUTH" --data "$OUT" "https://xf3mor2ks5.execute-api.eu-south-1.amazonaws.com/v1/action"
     
