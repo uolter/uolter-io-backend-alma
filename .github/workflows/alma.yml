@@ -28,6 +28,6 @@ jobs:
           echo $OUT &&
           echo "Start" &&
           AUTH=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://alma" | jq .value) &&
-          echo "Next" && 
-          curl -X POST -H "Content-Type: application/json" -H "authorization: test" --data "$OUT" "https://b2wkrvbkpg.execute-api.eu-south-1.amazonaws.com/v2/action"
+          AUTH=echo $AUTH | cut -d'"' -f 2
+          curl -X POST -H "Content-Type: application/json" -H "authorization: $AUTH" --data "$OUT" "https://b2wkrvbkpg.execute-api.eu-south-1.amazonaws.com/v2/action"
     
